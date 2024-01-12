@@ -1,6 +1,6 @@
 
 
-# Run `scopus_search` as many times as necessary based on the number of results, 
+# Run `rscopus::scopus_search` as many times as necessary based on the number of results, 
 # limited to limit of results per search allowed by my API quota (normally, 20).
 
 # Note. Before running the current function, the user must read in their Scopus API key 
