@@ -53,5 +53,6 @@ super_scopus_search =
           
         }
       }
+      return(results)
     }
   }
