@@ -39,7 +39,12 @@ super_scopus_search_additional_DOIs =
       
       # Latest DOIs
       
-      DOIs = super_scopus_search_DOIs(query, search_period, quota)
+      # Use tryCatch() to handle errors in super_scopus_search_DOIs
+      res = tryCatch({
+        DOIs = super_scopus_search_DOIs(query, search_period, quota)
+      }, error = function(e) {
+        print(paste("Error in nested function 'super_scopus_search_DOIs': ", e$message))  # Print error message to console
+      })
       
       date_time = as.character(format(Sys.time(), '%Y-%m-%d %H%M'))
       
