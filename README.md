@@ -1,3 +1,12 @@
+
 # super_scopus_search
 
 ### Set of functions that run `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
+
+- `super_scopus_search`: Run `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
+
+- `super_scopus_search_DOI`: Get DOIs from `super_scopus_search()`
+  
+- `super_scopus_search_additional_DOIs`: Search for additional DOIs after running `super_scopus_search_DOI(save_date_time_file = TRUE)`.
+
+Note. Before running any of these functions, the user must read in their Scopus API key confidentially (see https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html). An error appears if the key has not been read in.
