@@ -26,8 +26,8 @@ super_scopus_search_DOIs =
       require(dplyr)
       
       # Use tryCatch() to handle errors in super_scopus_search
-      res = tryCatch({
-        results = super_scopus_search(query, search_period, quota)
+      results = tryCatch({
+        super_scopus_search(query, search_period, quota)
       }, error = function(e) {
         print(paste("Error in nested function 'super_scopus_search': ", e$message))  # Print error message to console
       })
