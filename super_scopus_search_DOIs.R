@@ -25,7 +25,12 @@ super_scopus_search_DOIs =
       
       require(dplyr)
       
-      results = super_scopus_search(query, search_period, quota)
+      # Use tryCatch() to handle errors in super_scopus_search
+      res = tryCatch({
+        results = super_scopus_search(query, search_period, quota)
+      }, error = function(e) {
+        print(paste("Error in nested function 'super_scopus_search': ", e$message))  # Print error message to console
+      })
       
       DOIs = results[complete.cases(results$doi), 'doi']
       
