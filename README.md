@@ -5,7 +5,7 @@
 
 - `super_scopus_search`: Run `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
 
-- `super_scopus_search_DOIs`: Get DOIs from `super_scopus_search()`
+- `super_scopus_search_DOIs`: Get DOIs from `super_scopus_search`
   
 - `super_scopus_search_additional_DOIs`: Search for additional DOIs after running `super_scopus_search_DOIs(save_date_time_file = TRUE)`.
 
