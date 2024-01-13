@@ -37,6 +37,5 @@ super_scopus_search_DOIs =
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
       write.csv(DOIs, file, row.names = FALSE)
-      
     }
   }
