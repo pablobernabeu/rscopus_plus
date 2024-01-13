@@ -7,7 +7,8 @@ super_scopus_search_DOI =
             search_period, 
             quota,  # Scopus API quota 
             path,   # directory path
-            save_date_time_file = FALSE  # save date and time in a text file
+            save_date_time_file = FALSE,  # save date and time in a text file
+            console_print = FALSE         # print DOIs in R console
   ) {
     
     require(rscopus)
@@ -31,7 +32,9 @@ super_scopus_search_DOI =
       
       DOIs = results[complete.cases(results$doi), 'doi']
       
-      cat(DOIs, sep = '\n')
+      if(isTRUE(console_print)) {
+        cat(DOIs, sep = '\n')
+      }
       
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
