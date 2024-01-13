@@ -25,7 +25,7 @@ super_scopus_search_DOI =
       date_time = as.character(format(Sys.time(), "%Y-%m-%d %H%M"))
       
       if(isTRUE(save_date_time_file)) {
-        fileConn = file(paste0(path, 'date and time from last retrieval of DOIs.txt'))
+        fileConn = file(paste0(path, 'date and time of previous retrieval of DOIs.txt'))
         writeLines(date_time, fileConn)
         close(fileConn)
       }
