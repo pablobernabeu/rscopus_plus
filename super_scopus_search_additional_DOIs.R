@@ -1,4 +1,4 @@
-  
+
 # Search for additional DOIs after running 
 # `super_scopus_search_DOIs(save_date_time_file = TRUE)`.
 #  Save the additional DOIs in a CSV file, and 
@@ -40,11 +40,13 @@ super_scopus_search_additional_DOIs =
       # Latest DOIs
       
       # Use tryCatch() to handle errors in super_scopus_search_DOIs
-      res = tryCatch({
-        DOIs = super_scopus_search_DOIs(query, search_period, quota)
+      results = tryCatch({
+        super_scopus_search(query, search_period, quota)
       }, error = function(e) {
         print(paste("Error in nested function 'super_scopus_search_DOIs': ", e$message))  # Print error message to console
       })
+      
+      DOIs = results[complete.cases(results$doi), 'doi']
       
       date_time = as.character(format(Sys.time(), '%Y-%m-%d %H%M'))
       
