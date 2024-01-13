@@ -15,12 +15,22 @@ super_scopus_search =
     
     require(rscopus)
     
-    if(have_api_key()) {  # error if API key missing
+    if(!have_api_key()) {  # error if API key missing
+      
+      stop('The login key for the Scopus API has not been read in. Find out more at \n',
+           'https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html')
+      
+    } else {
       
       require(dplyr)
       
-      res = scopus_search( query = query, max_count = quota, 
-                           count = quota, date = search_period )
+      # Use tryCatch() to handle errors in scopus_search
+      res = tryCatch({
+        scopus_search( query = query, max_count = quota, 
+                       count = quota, date = search_period )
+      }, error = function(e) {
+        print(paste("Error in nested function 'scopus_search': ", e$message))  # Print error message to console
+      })
       
       total_results = 0 : res$total_results
       
