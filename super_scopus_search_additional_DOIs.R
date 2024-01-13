@@ -58,6 +58,5 @@ super_scopus_search_additional_DOIs =
                   row.names = FALSE)
       
       if(isTRUE(console_print)) cat(additional_DOIs)
-      
     }
   }
