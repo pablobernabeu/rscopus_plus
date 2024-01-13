@@ -18,7 +18,7 @@ super_scopus_search =
     if(!have_api_key()) {  # error if API key missing
       
       stop('The login key for the Scopus API has not been read in. Find out more at \n',
-           'https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html')
+           '  https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html')
       
     } else {
       
