@@ -1,6 +1,6 @@
   
 # Search for additional DOIs after running 
-# `super_scopus_search_DOI(save_date_time_file = TRUE)`.
+# `super_scopus_search_DOIs(save_date_time_file = TRUE)`.
 #  Save the additional DOIs in a CSV file, and 
 # save all DOIS in another CSV file.
 
