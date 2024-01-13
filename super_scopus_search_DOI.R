@@ -18,7 +18,7 @@ super_scopus_search_DOI =
       # Read in 'super_scopus_search' function
       source('https://raw.githubusercontent.com/pablobernabeu/super_scopus_search/main/super_scopus_search.R')
       
-      library(dplyr)
+      require(dplyr)
       
       results = super_scopus_search(query, search_period, quota)
       
