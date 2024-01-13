@@ -32,9 +32,7 @@ super_scopus_search_DOI =
       
       DOIs = results[complete.cases(results$doi), 'doi']
       
-      if(isTRUE(console_print)) {
-        cat(DOIs, sep = '\n')
-      }
+      if(isTRUE(console_print)) cat(DOIs, sep = '\n')
       
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
