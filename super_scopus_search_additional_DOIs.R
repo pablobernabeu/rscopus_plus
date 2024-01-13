@@ -16,7 +16,12 @@ super_scopus_search_additional_DOIs =
     
     require(rscopus)
     
-    if(have_api_key()) {  # error if API key missing
+    if(!have_api_key()) {  # error if API key missing
+      
+      stop('The login key for the Scopus API has not been read in. Find out more at \n',
+           'https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html')
+      
+    } else {
       
       # Read in 'super_scopus_search_DOI' function
       source('https://raw.githubusercontent.com/pablobernabeu/super_scopus_search/main/super_scopus_search_DOIs.R')
