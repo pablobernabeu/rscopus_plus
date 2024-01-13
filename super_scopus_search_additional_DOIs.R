@@ -19,7 +19,7 @@ super_scopus_search_additional_DOIs =
       # Read in 'super_scopus_search_DOI' function
       source('https://raw.githubusercontent.com/pablobernabeu/super_scopus_search/main/super_scopus_search_DOI.R')
       
-      library(dplyr)
+      require(dplyr)
       
       # Previous DOIs
       
