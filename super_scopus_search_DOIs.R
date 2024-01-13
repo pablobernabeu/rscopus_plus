@@ -22,6 +22,10 @@ super_scopus_search_DOIs =
       
       results = super_scopus_search(query, search_period, quota)
       
+      DOIs = results[complete.cases(results$doi), 'doi']
+      
+      if(isTRUE(console_print_DOIs)) cat(DOIs, sep = '\n')
+      
       date_time = as.character(format(Sys.time(), '%Y-%m-%d %H%M'))
       
       if(isTRUE(save_date_time_file)) {
@@ -29,10 +33,6 @@ super_scopus_search_DOIs =
         writeLines(date_time, fileConn)
         close(fileConn)
       }
-      
-      DOIs = results[complete.cases(results$doi), 'doi']
-      
-      if(isTRUE(console_print_DOIs)) cat(DOIs, sep = '\n')
       
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
