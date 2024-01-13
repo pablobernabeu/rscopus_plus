@@ -1,4 +1,4 @@
-
+  
 # Search for additional DOIs after running 
 # `super_scopus_search_DOI(save_date_time_file = TRUE)`.
 #  Save the additional DOIs in a CSV file, and 
@@ -19,7 +19,7 @@ super_scopus_search_additional_DOIs =
     if(have_api_key()) {  # error if API key missing
       
       # Read in 'super_scopus_search_DOI' function
-      source('https://raw.githubusercontent.com/pablobernabeu/super_scopus_search/main/super_scopus_search_DOI.R')
+      source('https://raw.githubusercontent.com/pablobernabeu/super_scopus_search/main/super_scopus_search_DOIs.R')
       
       require(dplyr)
       
@@ -34,7 +34,7 @@ super_scopus_search_additional_DOIs =
       
       # Latest DOIs
       
-      results = super_scopus_search(query, search_period, quota)
+      DOIs = super_scopus_search_DOIs(query, search_period, quota)
       
       date_time = as.character(format(Sys.time(), "%Y-%m-%d %H%M"))
       
@@ -43,8 +43,6 @@ super_scopus_search_additional_DOIs =
         writeLines(date_time, fileConn)
         close(fileConn)
       }
-      
-      DOIs = results[complete.cases(results$doi), 'doi']
       
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
