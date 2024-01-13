@@ -1,5 +1,5 @@
 
-# Get DOIs from super_scopus_search()
+# Get DOIs from super_scopus_search() and save them in a CSV file.
 
 super_scopus_search_DOI = 
   
