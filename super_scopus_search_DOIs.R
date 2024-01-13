@@ -1,7 +1,7 @@
 
 # Get DOIs from super_scopus_search() and save them in a CSV file.
 
-super_scopus_search_DOI = 
+super_scopus_search_DOIs = 
   
   function( query, 
             search_period, 
