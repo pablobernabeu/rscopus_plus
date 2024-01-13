@@ -22,7 +22,7 @@ super_scopus_search_DOIs =
       
       results = super_scopus_search(query, search_period, quota)
       
-      date_time = as.character(format(Sys.time(), "%Y-%m-%d %H%M"))
+      date_time = as.character(format(Sys.time(), '%Y-%m-%d %H%M'))
       
       if(isTRUE(save_date_time_file)) {
         fileConn = file(paste0(path, 'date and time of previous retrieval of DOIs.txt'))
