@@ -8,7 +8,7 @@ super_scopus_search_DOIs =
             quota,  # Scopus API quota 
             path,   # directory path
             save_date_time_file = FALSE,  # save date and time in a text file
-            console_print_DOIs = FALSE         # print DOIs in R console
+            console_print_DOIs = FALSE    # print DOIs in R console
   ) {
     
     require(rscopus)
