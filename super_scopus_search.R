@@ -19,7 +19,8 @@ super_scopus_search =
       
       require(dplyr)
       
-      res = scopus_search(query = query, max_count = quota, count = quota, date = search_period)
+      res = scopus_search( query = query, max_count = quota, 
+                           count = quota, date = search_period )
       
       total_results = 0 : res$total_results
       
