@@ -60,7 +60,7 @@ super_scopus_search_additional_DOIs =
       
       additional_DOIs %>%
         write.csv(paste0(path, 'additional DOIs, ', 
-                         date_time_last_access, '.csv'), 
+                         date_time, '.csv'), 
                   row.names = FALSE)
       
       if(isTRUE(save_date_time_file)) {
