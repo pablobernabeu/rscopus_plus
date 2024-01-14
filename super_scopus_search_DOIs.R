@@ -34,7 +34,7 @@ super_scopus_search_DOIs =
       
       DOIs = results[complete.cases(results$doi), 'doi']
       
-      if(isTRUE(console_print_DOIs)) cat(DOIs, sep = '\n')
+      if(isTRUE(console_print_DOIs)) cat(DOIs, '', sep = '\n')
       
       date_time = as.character(format(Sys.time(), '%Y-%m-%d %H%M'))
       
