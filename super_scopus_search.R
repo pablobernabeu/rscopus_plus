@@ -5,7 +5,7 @@
 # (see https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html). An error appears if the key 
 # has not been read in.
 
-super_scopus_search = 
+scopus_search_plus = 
   
   function( query, 
             search_period,       # single year or period (e.g., '2000-2010')
