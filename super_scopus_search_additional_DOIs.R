@@ -50,12 +50,6 @@ super_scopus_search_additional_DOIs =
       
       date_time = as.character(format(Sys.time(), '%Y-%m-%d %H%M'))
       
-      if(isTRUE(save_date_time_file)) {
-        fileConn = file(paste0(path, 'date and time of previous retrieval of DOIs.txt'))
-        writeLines(date_time, fileConn)
-        close(fileConn)
-      }
-      
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
       write.csv(DOIs, file, row.names = FALSE)
