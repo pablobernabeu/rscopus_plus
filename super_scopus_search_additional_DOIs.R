@@ -62,7 +62,7 @@ super_scopus_search_additional_DOIs =
       
       # Find the DOIs that were not in the previous retrieval
       
-      additional_DOIs = DOIs[which(!DOIs %in% previous_DOIs),] 
+      additional_DOIs = DOIs[!DOIs$x %in% additional_DOIs$x,] 
       
       additional_DOIs %>%
         write.csv(paste0(path, 'additional DOIs, ', 
