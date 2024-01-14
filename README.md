@@ -11,4 +11,4 @@
 
 - `scopus_comparison`: Compare counts of publications on various topics during a certain period.
 
-*Note.* Before running any of these functions, the user must read in their Scopus API key confidentially (see https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html). An error appears if the key has not been read in.
+*Note.* Before running any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). An error appears if the key has not been read in.
