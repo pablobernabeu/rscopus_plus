@@ -8,9 +8,10 @@ scopus_search_plus_additional_DOIs =
   
   function( query, 
             search_period, 
-            quota,  # Scopus API quota 
-            path,   # directory path
+            quota,                        # Scopus API quota 
+            path,                         # directory path
             save_date_time_file = TRUE,   # save date and time in a text file
+            verbose = TRUE,               # print progress in R console
             console_print_DOIs = FALSE    # print DOIs in R console
   ) {
     
@@ -40,7 +41,7 @@ scopus_search_plus_additional_DOIs =
     
     # Use tryCatch() to handle errors in scopus_search_plus_DOIs
     results = tryCatch({
-      scopus_search_plus(query, search_period, quota)
+      scopus_search_plus(query, search_period, quota, verbose = verbose)
     }, error = function(e) {
       print(paste("Error in nested function 'scopus_search_plus_DOIs': ", e$message))  # Print error message to console
     })
