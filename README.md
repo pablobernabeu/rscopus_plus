@@ -9,4 +9,6 @@
   
 - `scopus_search_plus_additional_DOIs`: Search for additional DOIs after running `scopus_search_plus_DOIs(save_date_time_file = TRUE)`.
 
+- `scopus_comparison`: Compare counts of publications on various topics during a certain period.
+
 *Note.* Before running any of these functions, the user must read in their Scopus API key confidentially (see https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html). An error appears if the key has not been read in.
