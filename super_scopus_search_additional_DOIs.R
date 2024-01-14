@@ -52,13 +52,13 @@ super_scopus_search_additional_DOIs =
       
       file = paste0(path, 'DOIs, ', date_time, '.csv')
       
-      write.csv(DOIs, file, row.names = FALSE)
+      write.csv(unique(DOIs), file, row.names = FALSE)
       
       # Find the DOIs that were not in the previous retrieval
       
       additional_DOIs = DOIs[!DOIs %in% previous_DOIs$x] 
       
-      additional_DOIs %>%
+      unique(additional_DOIs) %>%
         write.csv(paste0(path, 'additional DOIs, ', 
                          date_time, '.csv'), 
                   row.names = FALSE)
