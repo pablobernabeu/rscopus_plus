@@ -1,6 +1,8 @@
 
 # rscopus_plus
 
+## An extension of the 'rscopus' package to access Scopus records.
+
 ### Handling your search quota
 
   - `scopus_search_plus`: Run `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
