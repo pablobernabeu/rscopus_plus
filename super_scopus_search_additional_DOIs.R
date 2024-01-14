@@ -1,10 +1,10 @@
 
 # Search for additional DOIs after running 
-# `super_scopus_search_DOIs(save_date_time_file = TRUE)`.
+# `scopus_search_plus_DOIs(save_date_time_file = TRUE)`.
 #  Save the additional DOIs in a CSV file, and 
 # save all DOIS in another CSV file.
 
-super_scopus_search_additional_DOIs = 
+scopus_search_plus_additional_DOIs = 
   
   function( query, 
             search_period, 
@@ -22,8 +22,8 @@ super_scopus_search_additional_DOIs =
            '  https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html')
     }
     
-    # Read in 'super_scopus_search_DOI' function
-    source('https://raw.githubusercontent.com/pablobernabeu/super_scopus_search/main/super_scopus_search_DOIs.R')
+    # Read in 'scopus_search_plus_DOIs' function
+    source('https://raw.githubusercontent.com/pablobernabeu/rscopus_plus/main/scopus_search_plus_DOIs.R')
     
     require(dplyr)
     
@@ -38,11 +38,11 @@ super_scopus_search_additional_DOIs =
     
     # Latest DOIs
     
-    # Use tryCatch() to handle errors in super_scopus_search_DOIs
+    # Use tryCatch() to handle errors in scopus_search_plus_DOIs
     results = tryCatch({
-      super_scopus_search(query, search_period, quota)
+      scopus_search_plus(query, search_period, quota)
     }, error = function(e) {
-      print(paste("Error in nested function 'super_scopus_search_DOIs': ", e$message))  # Print error message to console
+      print(paste("Error in nested function 'scopus_search_plus_DOIs': ", e$message))  # Print error message to console
     })
     
     DOIs = results[complete.cases(results$doi), 'doi']
