@@ -69,6 +69,12 @@ super_scopus_search_additional_DOIs =
                          date_time_last_access, '.csv'), 
                   row.names = FALSE)
       
+      if(isTRUE(save_date_time_file)) {
+        fileConn = file(paste0(path, 'date and time of previous retrieval of DOIs.txt'))
+        writeLines(date_time, fileConn)
+        close(fileConn)
+      }
+      
       if(isTRUE(console_print_DOIs)) cat(additional_DOIs, '', sep = '\n')
     }
   }
