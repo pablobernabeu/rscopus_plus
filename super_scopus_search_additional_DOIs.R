@@ -69,6 +69,6 @@ super_scopus_search_additional_DOIs =
                          date_time_last_access, '.csv'), 
                   row.names = FALSE)
       
-      if(isTRUE(console_print_DOIs)) cat(additional_DOIs, sep = '\n')
+      if(isTRUE(console_print_DOIs)) cat(additional_DOIs, '', sep = '\n')
     }
   }
