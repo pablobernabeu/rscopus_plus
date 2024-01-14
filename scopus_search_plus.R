@@ -8,9 +8,10 @@
 scopus_search_plus = 
   
   function( query, 
-            search_period,       # single year or period (e.g., '2000-2010')
-            quota,               # Scopus API quota
-            safe_maximum = 5000  # limit number of results
+            search_period,          # single year or period (e.g., '2000-2010')
+            quota,                  # Scopus API quota
+            safe_maximum = 5000,    # limit number of results
+            verbose = TRUE          # print progress in R console
   ) {
     
     require(rscopus)
@@ -42,7 +43,8 @@ scopus_search_plus =
     for(i_chunk in 1 : n_distinct(chunks)) {
       
       res = scopus_search(query = query, max_count = quota, count = quota, 
-                          start = chunks[i_chunk], date = search_period)
+                          start = chunks[i_chunk], date = search_period, 
+                          verbose = verbose)
       
       for(i_entry in 1 : length(res$entries)) {
         
@@ -59,7 +61,6 @@ scopus_search_plus =
                                 doi = ifelse(!is.null(doi), doi, NA) )
         
         results = rbind(results, i_results)
-        
       }
     }
     return(results)
