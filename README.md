@@ -1,7 +1,7 @@
 
 # rscopus_plus
 
-## An extension of the 'rscopus' package to access Scopus records
+## An extension of the 'rscopus' package to access Scopus records in R
 
 ### Handling your search quota
 
