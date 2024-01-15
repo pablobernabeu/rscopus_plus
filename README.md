@@ -9,7 +9,7 @@
 
   - `scopus_search_plus_DOIs`: Get DOIs from `scopus_search_plus`, which can then be imported into a reference manager, such as Zotero, to create a list of references.
   
-  - `scopus_search_plus_additional_DOIs`: Search for additional DOIs after running `scopus_search_plus_DOIs(save_date_time_file = TRUE)`.
+  - `scopus_search_plus_additional_DOIs`: Search for additional DOIs.
 
 ### Comparing counts of publications
 
