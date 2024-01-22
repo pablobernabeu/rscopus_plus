@@ -11,6 +11,7 @@ scopus_search_plus =
             search_period,          # single year or period (e.g., '2000-2010')
             quota,                  # Scopus API quota
             safe_maximum = 5000,    # limit number of results
+            view = c('STANDARD', 'COMPLETE'),  # see https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
             verbose = TRUE          # print progress in R console
   ) {
     
@@ -28,7 +29,7 @@ scopus_search_plus =
     res = tryCatch({
       scopus_search(query = query, max_count = quota, 
                     count = quota, date = search_period, 
-                    verbose = verbose)
+                    view = view, verbose = verbose)
     }, error = function(e) {
       print(paste("Error in nested function 'scopus_search': ", e$message))  # Print error message to console
     })
