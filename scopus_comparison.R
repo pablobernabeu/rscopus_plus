@@ -44,12 +44,12 @@ scopus_comparison =
         # Current year must be transformed to search_period up to the 
         # following year to allow `search_scopus` function to work.
         
-        search_period = paste(year, year+1, sep = '-')
+        i_search_period = paste(year, year+1, sep = '-')
         
         # Use tryCatch() to handle errors in scopus_search
         res = tryCatch({
           scopus_search(query = query, max_count = quota, count = quota, 
-                        date = search_period, verbose = verbose)
+                        date = i_search_period, verbose = verbose)
         }, error = function(e) {
           print(paste("Error in nested function 'scopus_search': ", e$message))  # Print error message to console
         })
