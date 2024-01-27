@@ -48,8 +48,10 @@ scopus_comparison =
         
         # Use tryCatch() to handle errors in scopus_search
         res = tryCatch({
+          
           scopus_search(query = query, max_count = quota, count = quota, 
                         date = i_search_period, verbose = verbose)
+          
         }, error = function(e) {  # Print error message to console
           print(paste("Error in nested function 'scopus_search': ", e$message))
         })
