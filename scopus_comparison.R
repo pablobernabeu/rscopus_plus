@@ -50,8 +50,8 @@ scopus_comparison =
         res = tryCatch({
           scopus_search(query = query, max_count = quota, count = quota, 
                         date = i_search_period, verbose = verbose)
-        }, error = function(e) {
-          print(paste("Error in nested function 'scopus_search': ", e$message))  # Print error message to console
+        }, error = function(e) {  # Print error message to console
+          print(paste("Error in nested function 'scopus_search': ", e$message))
         })
         
         # Number of publications
