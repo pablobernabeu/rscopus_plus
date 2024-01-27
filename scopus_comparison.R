@@ -3,8 +3,7 @@
 
 scopus_comparison = 
   
-  function(reference_query, comparison_terms, search_period, 
-           quota, 
+  function(reference_query, comparison_terms, search_period, quota, 
            safe_maximum = 5000, # limit number of results
            verbose = TRUE) {
     
@@ -52,7 +51,8 @@ scopus_comparison =
         res = tryCatch({
           
           scopus_search(query = query, max_count = quota, count = quota, 
-                        date = i_search_period, verbose = verbose)
+                        date = i_search_period, safe_maximum = safe_maximum,
+                        verbose = verbose)
           
         }, error = function(e) {  # Print error message to console
           print(paste("Error in nested function 'scopus_search': ", e$message))
