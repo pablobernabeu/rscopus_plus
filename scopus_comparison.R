@@ -3,8 +3,10 @@
 
 scopus_comparison = 
   
-  function(reference_query, comparison_terms, 
-           search_period, quota, verbose = TRUE) {
+  function(reference_query, comparison_terms, search_period, 
+           quota, 
+           safe_maximum = 5000, # limit number of results
+           verbose = TRUE) {
     
     require(rscopus)
     
