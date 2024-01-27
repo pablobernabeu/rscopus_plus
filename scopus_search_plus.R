@@ -27,9 +27,10 @@ scopus_search_plus =
     
     # Use tryCatch() to handle errors in scopus_search
     res = tryCatch({
-      scopus_search(query = query, max_count = quota, 
-                    count = quota, date = search_period, 
-                    view = view, verbose = verbose)
+      
+      scopus_search(query = query, max_count = quota, count = quota, 
+                    date = search_period, view = view, verbose = verbose)
+      
     }, error = function(e) {  # Print error message to console
       print(paste("Error in nested function 'scopus_search': ", e$message))
     })
@@ -46,9 +47,11 @@ scopus_search_plus =
       
       # Use tryCatch() to handle errors in scopus_search
       res = tryCatch({
+        
         scopus_search(query = query, max_count = quota, count = quota, 
                       start = chunks[i_chunk], date = search_period, 
                       verbose = verbose)
+        
       }, error = function(e) {  # Print error message to console
         print(paste("Error in nested function 'scopus_search': ", e$message))
       })
