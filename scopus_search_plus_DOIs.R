@@ -27,7 +27,9 @@ scopus_search_plus_DOIs =
     
     # Use tryCatch() to handle errors in scopus_search_plus
     results = tryCatch({
+      
       scopus_search_plus(query, search_period, quota, verbose = verbose)
+      
     }, error = function(e) {  # Print error message to console
       print(paste("Error in nested function 'scopus_search_plus': ", e$message))
     })
