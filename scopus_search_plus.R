@@ -30,8 +30,8 @@ scopus_search_plus =
       scopus_search(query = query, max_count = quota, 
                     count = quota, date = search_period, 
                     view = view, verbose = verbose)
-    }, error = function(e) {
-      print(paste("Error in nested function 'scopus_search': ", e$message))  # Print error message to console
+    }, error = function(e) {  # Print error message to console
+      print(paste("Error in nested function 'scopus_search': ", e$message))
     })
     
     total_results = 0 : res$total_results
@@ -49,8 +49,8 @@ scopus_search_plus =
         scopus_search(query = query, max_count = quota, count = quota, 
                       start = chunks[i_chunk], date = search_period, 
                       verbose = verbose)
-      }, error = function(e) {
-        print(paste("Error in nested function 'scopus_search': ", e$message))  # Print error message to console
+      }, error = function(e) {  # Print error message to console
+        print(paste("Error in nested function 'scopus_search': ", e$message))
       })
       
       for(i_entry in 1 : length(res$entries)) {
