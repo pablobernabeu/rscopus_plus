@@ -3,7 +3,10 @@
 
 scopus_comparison = 
   
-  function(reference_query, comparison_terms, search_period, quota, 
+  function(reference_query, 
+           comparison_terms, 
+           search_period, 
+           quota, 
            safe_maximum = 20000,  # limit number of results
            verbose = TRUE) {
     
