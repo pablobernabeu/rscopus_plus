@@ -56,7 +56,7 @@ scopus_comparison =
                         date = i_search_period, verbose = verbose)
           
         }, error = function(e) {  # Print error message to console
-          print(paste("Error in nested function 'scopus_search': ", e$message))
+          print(paste("Error in nested function 'scopus_search':", e$message))
         })
         
         # Number of publications
