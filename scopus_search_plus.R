@@ -12,6 +12,7 @@ scopus_search_plus =
             quota,                  # Scopus API quota
             safe_maximum = 5000,    # limit number of results
             view = c('STANDARD', 'COMPLETE'),  # see https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
+            inst_token = NULL,      # see https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
             verbose = TRUE          # print progress in R console
   ) {
     
@@ -28,8 +29,16 @@ scopus_search_plus =
     # Use tryCatch() to handle errors in scopus_search
     res = tryCatch({
       
-      scopus_search(query = query, max_count = quota, count = quota, 
-                    date = search_period, view = view, verbose = verbose)
+      if(is.null(inst_token)) {
+        scopus_search(query = query, max_count = quota, count = quota, 
+                      date = search_period, view = view,
+                      verbose = verbose)
+      } else {
+        scopus_search(query = query, max_count = quota, count = quota, 
+                      date = search_period, view = view,
+                      headers = inst_token_header(inst_token), 
+                      verbose = verbose)
+      }
       
     }, error = function(e) {  # Print error message to console
       print(paste("Error in nested function 'scopus_search': ", e$message))
@@ -48,10 +57,16 @@ scopus_search_plus =
       # Use tryCatch() to handle errors in scopus_search
       res = tryCatch({
         
-        scopus_search(query = query, max_count = quota, count = quota, 
-                      start = chunks[i_chunk], date = search_period, 
-                      verbose = verbose)
-        
+        if(is.null(inst_token)) {
+          scopus_search(query = query, max_count = quota, count = quota, 
+                        start = chunks[i_chunk], date = search_period, 
+                        view = view, verbose = verbose)
+        } else {
+          scopus_search(query = query, max_count = quota, count = quota, 
+                        start = chunks[i_chunk], date = search_period, 
+                        view = view, headers = inst_token_header(inst_token), 
+                        verbose = verbose)
+        }
       }, error = function(e) {  # Print error message to console
         print(paste("Error in nested function 'scopus_search': ", e$message))
       })
