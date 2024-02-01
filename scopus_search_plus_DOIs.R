@@ -31,7 +31,7 @@ scopus_search_plus_DOIs =
       scopus_search_plus(query, search_period, quota, verbose = verbose)
       
     }, error = function(e) {  # Print error message to console
-      print(paste("Error in nested function 'scopus_search_plus': ", e$message))
+      print(paste("Error in nested function 'scopus_search_plus':", e$message))
     })
     
     DOIs = results[complete.cases(results$doi), 'doi']
