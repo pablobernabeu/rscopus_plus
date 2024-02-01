@@ -40,7 +40,7 @@ scopus_search_plus =
       }
       
     }, error = function(e) {  # Print error message to console
-      print(paste("Error in nested function 'scopus_search': ", e$message))
+      print(paste("Error in nested function 'scopus_search':", e$message))
     })
     
     total_results = 0 : res$total_results
@@ -67,7 +67,7 @@ scopus_search_plus =
                         verbose = verbose)
         }
       }, error = function(e) {  # Print error message to console
-        print(paste("Error in nested function 'scopus_search': ", e$message))
+        print(paste("Error in nested function 'scopus_search':", e$message))
       })
       
       for(i_entry in 1 : length(res$entries)) {
