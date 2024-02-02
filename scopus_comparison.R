@@ -49,18 +49,20 @@ scopus_comparison =
         
         i_search_period = paste(year, year+1, sep = '-')
         
-        # Use tryCatch() to handle errors in scopus_search
-        res = tryCatch({
-          
-          scopus_search(query = query, max_count = quota, count = quota, 
-                        date = i_search_period, verbose = verbose)
-          
-        }, error = function(e) {  # Print error message to console
-          print(paste("Error in nested function 'scopus_search':", e$message))
-        })
+        # Use tryCatch() to handle errors in scopus_search. Errors arise when 
+        # there are no publications, in which case a zero is registered. 
         
-        # Number of publications
-        publications = res$total_results
+        publications = tryCatch({
+          
+          res = scopus_search(query = query, max_count = quota, count = quota, 
+                              date = i_search_period, verbose = verbose)
+          
+          res$total_results # output
+          
+        }, error = function(e) {  # If error, register 0 publications
+          
+          0 # output
+        })
         
         results = rbind(results, data.frame(query, year, publications))
       }
