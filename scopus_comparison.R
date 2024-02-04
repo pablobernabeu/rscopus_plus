@@ -3,13 +3,15 @@
 
 scopus_comparison = 
   
-  function(reference_query, 
-           comparison_terms, 
-           search_period, 
-           quota, 
-           verbose = TRUE) {
+  function( reference_query, 
+            comparison_terms, 
+            search_period, 
+            quota, 
+            reference_query_TITLE_ABS_KEY = FALSE,
+            verbose = TRUE ) {
     
     require(rscopus)
+    require(stringr)
     
     # Error if API key missing
     if(!have_api_key()) {
@@ -19,6 +21,22 @@ scopus_comparison =
     
     require(dplyr)  # data wrangling
     require(formattable)  # number formatting
+    
+    # If reference_query_TITLE_ABS_KEY = TRUE, wrap reference_query in 
+    # TITLE_ABS_KEY() to constrain it to title, abstract and keywords.
+    # Furthermore, the base form of reference_query is stored separately
+    # as it will be used in the abridged label.
+    
+    abridged_reference_query = reference_query
+    
+    print(reference_query_TITLE_ABS_KEY)
+    print(isTRUE(reference_query_TITLE_ABS_KEY))
+    print(isFALSE(reference_query_TITLE_ABS_KEY))
+    str(reference_query_TITLE_ABS_KEY)
+    
+    if(reference_query_TITLE_ABS_KEY) {
+      reference_query = paste0('TITLE_ABS_KEY(', reference_query, ')')
+    }
     
     # Compose comparison queries by preceding each comparison term by the 
     # reference query. In this way, the `comparison_terms` input (e.g., 
@@ -31,8 +49,10 @@ scopus_comparison =
       queries = c(queries, paste(reference_query, comparison_terms[i_term]))
     }
     
-    results = data.frame(query = as.character(), year = as.numeric(), 
-                         publications = as.character())
+    results = data.frame( query = as.character(), 
+                          abridged_query = as.character(), 
+                          year = as.numeric(), 
+                          publications = as.character() )
     
     # Iterate over queries
     for(i_query in seq_along(queries)) {
@@ -64,19 +84,46 @@ scopus_comparison =
           0 # output
         })
         
-        results = rbind(results, data.frame(query, year, publications))
+        results = rbind( results, 
+                         
+                         data.frame(query, year, publications) %>% 
+                           mutate(
+                             abridged_query = 
+                               case_when(i_query > 1 ~ 
+                                           str_replace(query, fixed(reference_query), 
+                                                       "[reference query] + '") %>%
+                                           str_replace("' ", "'") %>% paste0("'"), 
+                                         .default = query)
+                           ) )
       }
     }
     
     # Compute publication count over the whole search_period
-    results = results %>% group_by(query) %>% 
+    
+    results = results %>% 
+      group_by(query) %>% 
       mutate(total_publications = sum(publications))
     
-    # Create column containing each query and its total publication count
-    results = results %>%
-      mutate(query_total_publications = 
-               paste0('"', query, '"', ' [', 
-                      formattable::comma(total_publications, digits = 0), ']'))
+    # Create columns containing each query and its total publication count
+    
+    results = results %>% mutate(
+      
+      query_total_publications = 
+        paste0("'", query, "'", ' [', 
+               formattable::comma(total_publications, digits = 0), ']'),
+      
+      abridged_query_total_publications = 
+        
+        case_when( query == reference_query ~ 
+                     paste0("'", abridged_query, "'", ' [', 
+                            formattable::comma(total_publications, digits = 0), ']'), 
+                   
+                   query != reference_query ~ 
+                     paste0(abridged_query, ' [', 
+                            formattable::comma(total_publications, digits = 0), ']'), 
+                   
+                   .default = NA )
+    )
     
     # Compute comparison weights by calculating the percentage of results for each
     # comparison query (e.g., "'language learning' 'effect size'") relative to the
@@ -131,6 +178,7 @@ scopus_comparison =
     
     # Select only the base query in the main data set 
     # and add the comparison queries.
+    
     results = results %>% 
       filter(query == unique(results$query)[1]) %>% 
       rbind(results2)
