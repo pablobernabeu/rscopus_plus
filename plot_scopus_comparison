@@ -3,10 +3,10 @@
 
 plot_scopus_comparison = function(data) {
   
-  library(stringr)
-  library(ggplot2)
-  library(geomtextpath)
-  library(ggtext)
+  require(stringr)
+  require(ggplot2)
+  require(geomtextpath)
+  require(ggtext)
   
   # Colour reference query in dark blue
   
