@@ -7,11 +7,10 @@ scopus_comparison =
             comparison_terms, 
             search_period, 
             quota, 
-            reference_query_TITLE_ABS_KEY = FALSE,
+            reference_query_field_tag = NULL,
             verbose = TRUE ) {
     
     require(rscopus)
-    require(stringr)
     
     # Error if API key missing
     if(!have_api_key()) {
@@ -19,18 +18,17 @@ scopus_comparison =
            '  https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html')
     }
     
-    require(dplyr)  # data wrangling
+    require(stringr)      # text processing
+    require(dplyr)        # data wrangling
     require(formattable)  # number formatting
     
-    # If reference_query_TITLE_ABS_KEY = TRUE, wrap reference_query in 
-    # TITLE_ABS_KEY() to constrain it to title, abstract and keywords.
-    # Furthermore, the original reference_query is saved, as it will 
-    # be used in the abridged label.
+    # If reference_query_field_tag has been supplied, save the original reference_query
+    # for later use in the abridged query label, and wrap reference_query in the tag. 
     
     original_reference_query = reference_query
     
-    if(reference_query_TITLE_ABS_KEY) {
-      reference_query = paste0('TITLE-ABS-KEY(', reference_query, ')')
+    if(!is.null(reference_query_field_tag)) {
+      reference_query = paste0(reference_query_field_tag, '(', reference_query, ')')
     }
     
     # Compose comparison queries by preceding each comparison term by the 
