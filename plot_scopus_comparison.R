@@ -1,25 +1,24 @@
 
 # Plot output from scopus_comparison()
 
-plot_scopus_comparison = function(data) {
+plot_scopus_comparison = function(input) {
   
-  require(stringr)
-  require(ggplot2)
-  require(geomtextpath)
-  require(ggtext)
+  library(stringr)
+  library(ggplot2)
+  library(geomtextpath)
+  library(ggtext)
   
-  # Colour reference query in dark blue
-  
-  data = data %>% mutate( 
-    abridged_query_total_publications = 
-      case_when(is.na(comparison_percentage) ~ 
-                  abridged_query_total_publications %>%
-                  str_replace("^'", "'<span style = 'color: darkblue;'>") %>%
-                  str_replace(fixed("' ["), "</span>' ["), 
-                .default = abridged_query_total_publications)
-  )
-  
-  plot_data = data %>% 
+  input %>% 
+    
+    # Colour reference query in dark blue
+    mutate( 
+      abridged_query_total_publications = 
+        case_when(is.na(comparison_percentage) ~ 
+                    abridged_query_total_publications %>%
+                    str_replace("^'", "'<span style = 'color: darkblue;'>") %>%
+                    str_replace(fixed("' ["), "</span>' ["), 
+                  .default = abridged_query_total_publications)
+    ) %>% 
     
     # Remove the reference query, as it doesn't have any comparison percentage
     filter(!is.na(comparison_percentage)) %>%
@@ -35,11 +34,11 @@ plot_scopus_comparison = function(data) {
                   linetype = 0, text_smoothing = 40, spacing = 80, 
                   show.legend = FALSE) +
     ggtitle( paste0( 'Comparisons to reference query ',
-                     data %>%
+                     input %>%
                        filter(is.na(comparison_percentage)) %>%
                        pull(abridged_query_total_publications) %>% 
                        unique() ) ) +
-    ylab(paste0('% relative to ', data[1, 'abridged_query_total_publications'])) +
+    ylab(paste0('% relative to ', input[1, 'abridged_query_total_publications'])) +
     xlab('Year') + ylab('Percentage of publications relative to reference query') + 
     theme_minimal() + 
     theme(plot.title.position = 'plot', plot.title = element_markdown(hjust = 0.5), 
