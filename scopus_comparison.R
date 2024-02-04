@@ -24,18 +24,13 @@ scopus_comparison =
     
     # If reference_query_TITLE_ABS_KEY = TRUE, wrap reference_query in 
     # TITLE_ABS_KEY() to constrain it to title, abstract and keywords.
-    # Furthermore, the base form of reference_query is stored separately
-    # as it will be used in the abridged label.
+    # Furthermore, the original reference_query is saved, as it will 
+    # be used in the abridged label.
     
-    abridged_reference_query = reference_query
-    
-    print(reference_query_TITLE_ABS_KEY)
-    print(isTRUE(reference_query_TITLE_ABS_KEY))
-    print(isFALSE(reference_query_TITLE_ABS_KEY))
-    str(reference_query_TITLE_ABS_KEY)
+    original_reference_query = reference_query
     
     if(reference_query_TITLE_ABS_KEY) {
-      reference_query = paste0('TITLE_ABS_KEY(', reference_query, ')')
+      reference_query = paste0('TITLE-ABS-KEY(', reference_query, ')')
     }
     
     # Compose comparison queries by preceding each comparison term by the 
@@ -84,17 +79,22 @@ scopus_comparison =
           0 # output
         })
         
-        results = rbind( results, 
-                         
-                         data.frame(query, year, publications) %>% 
-                           mutate(
-                             abridged_query = 
-                               case_when(i_query > 1 ~ 
-                                           str_replace(query, fixed(reference_query), 
-                                                       "[reference query] + '") %>%
-                                           str_replace("' ", "'") %>% paste0("'"), 
-                                         .default = query)
-                           ) )
+        results = results %>%
+          
+          rbind( data.frame(query, year, publications) %>% 
+                   
+                   mutate( abridged_query = 
+                             
+                             case_when( query == reference_query ~ original_reference_query, 
+                                        
+                                        query != reference_query ~ 
+                                          str_replace(query, fixed(reference_query), 
+                                                      "[reference query] + '") %>%
+                                          str_replace("' ", "'") %>% paste0("'"), 
+                                        
+                                        .default = query )
+                   )
+          )
       }
     }
     
@@ -115,7 +115,7 @@ scopus_comparison =
       abridged_query_total_publications = 
         
         case_when( query == reference_query ~ 
-                     paste0("'", abridged_query, "'", ' [', 
+                     paste0("'", original_reference_query, "'", ' [', 
                             formattable::comma(total_publications, digits = 0), ']'), 
                    
                    query != reference_query ~ 
