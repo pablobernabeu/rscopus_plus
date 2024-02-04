@@ -13,6 +13,8 @@ These functions provide a modest extension of the [rscopus package in R](https:/
 
 - `scopus_comparison` compares counts of publications on various topics during a certain period.
 
+- `plot_scopus_comparison` draws a line plot with the output from `scopus_comparison`.
+
 ---
 
 *Note.* Before using any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). An error appears if the key has not been read in.
