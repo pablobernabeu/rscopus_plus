@@ -1,5 +1,5 @@
 
-# Plot output from rscopus_plus::scopus_comparison()
+# Plot output from scopus_comparison()
 
 plot_scopus_comparison = function(data) {
   
