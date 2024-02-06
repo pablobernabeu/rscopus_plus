@@ -8,34 +8,45 @@ plot_scopus_comparison = function(input) {
   library(geomtextpath)
   library(ggtext)
   
-  input %>% 
+  # Colour reference query in dark blue
+  
+  input = input %>% mutate( 
+    abridged_query_total_publications = 
+      case_when(query_type == 'reference' ~ 
+                  abridged_query_total_publications %>%
+                  str_replace("^'", "'<span style = 'color: darkblue;'>") %>%
+                  str_replace(fixed("' ["), "</span>' ["), 
+                .default = abridged_query_total_publications)
+  )
+  
+  # Sort queries by their average percentage rank throughout search_period
+  
+  query_order = 
+    input %>% arrange(-average_comparison_percentage) %>% 
+    pull(abridged_query_total_publications) %>% unique()
+  
+  input$abridged_query_total_publications = 
+    factor(input$abridged_query_total_publications, levels = query_order)
+  
+  # Plot
+  input %>%
     
-    # Colour reference query in dark blue
-    mutate( 
-      abridged_query_total_publications = 
-        case_when(is.na(comparison_percentage) ~ 
-                    abridged_query_total_publications %>%
-                    str_replace("^'", "'<span style = 'color: darkblue;'>") %>%
-                    str_replace(fixed("' ["), "</span>' ["), 
-                  .default = abridged_query_total_publications)
-    ) %>% 
+    # Select comparison queries only
+    filter(query_type == 'comparison') %>%
     
-    # Remove the reference query, as it doesn't have any comparison percentage
-    filter(!is.na(comparison_percentage)) %>%
-    
-    ggplot(aes(year, comparison_percentage, colour = abridged_query_total_publications)) +
+    ggplot(aes(year, comparison_percentage, colour = abridged_query)) +
     scale_x_continuous(breaks = scales::breaks_pretty(10), expand = expansion(0.01)) +
     scale_y_continuous(expand = expansion(0.02), n.breaks = 8,
                        labels = scales::label_percent(accuracy = 1, scale = 1)) +
     geom_line(linewidth = 2, alpha = 0.12) + 
     guides(colour = guide_legend(override.aes = list(alpha = 1))) +
     geom_textpath(aes(label = abridged_query_total_publications, 
-                      color = abridged_query_total_publications), 
+                      color = abridged_query), 
                   linetype = 0, text_smoothing = 40, spacing = 80, 
                   show.legend = FALSE) +
     ggtitle( paste0( 'Comparisons to reference query ',
                      input %>%
-                       filter(is.na(comparison_percentage)) %>%
+                       filter(query_type == 'reference') %>%
                        pull(abridged_query_total_publications) %>% 
                        unique() ) ) +
     ylab(paste0('% relative to ', input[1, 'abridged_query_total_publications'])) +
@@ -50,8 +61,8 @@ plot_scopus_comparison = function(input) {
           axis.text.y = element_text(size = 10, margin = margin(0, 0, 0, 2)),
           legend.text = element_text(size = 11, margin = margin(4, 0, 4, -5)),
           legend.margin = margin(-2, 19, 6, 3), legend.box.margin = margin(5, 1, 0, 1),
-          legend.title = element_blank(), legend.position = 'none', 
-          legend.direction = 'vertical', legend.key.width = unit(40, 'pt'), 
+          legend.title = element_blank(), legend.direction = 'vertical', 
+          legend.key.width = unit(40, 'pt'), 
           legend.background = element_rect(color = 'grey90', fill = 'grey98'), 
           panel.grid.minor = element_blank(), plot.margin = unit(c(8, 0, 8, 8), 'pt'))
 }
