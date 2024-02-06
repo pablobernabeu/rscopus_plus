@@ -1,7 +1,7 @@
 
 # Get DOIs from scopus_search_plus and save them in a CSV file.
 
-scopus_search_plus_DOIs = 
+scopus_search_DOIs = 
   
   function( query, 
             search_period, 
