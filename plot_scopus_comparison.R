@@ -4,8 +4,8 @@
 plot_scopus_comparison = 
   
   function( input,                       # results from `scopus_comparison()`
-            pub_count_in_legend = TRUE,  # include publications count in the legend
-            pub_count_in_lines = FALSE   # include publications count in the lines
+            pub_count_in_legend = TRUE,  # include publication counts in the legend
+            pub_count_in_lines = FALSE   # include publication counts in the lines
   ) {
     
     library(stringr)
