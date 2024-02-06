@@ -22,8 +22,8 @@ scopus_comparison =
     require(dplyr)        # data wrangling
     require(formattable)  # number formatting
     
-    # If reference_query_field_tag has been supplied, save the original reference_query
-    # for later use in the abridged query label, and wrap reference_query in the tag. 
+    # If reference_query_field_tag was supplied, save the original reference_query 
+    # for later use, and wrap reference_query in the field tag. 
     
     original_reference_query = reference_query
     
@@ -87,7 +87,7 @@ scopus_comparison =
                                         
                                         query != reference_query ~ 
                                           str_replace(query, fixed(reference_query), 
-                                                      "[reference query] + '") %>%
+                                                      "[ref.] + '") %>%
                                           str_replace("' ", "'") %>% paste0("'"), 
                                         
                                         .default = query )
@@ -174,14 +174,31 @@ scopus_comparison =
       }
     }
     
-    # Select only the base query in the main data set 
-    # and add the comparison queries.
-    
+    # Stack up queries, placing reference_query first
     results = results %>% 
-      filter(query == unique(results$query)[1]) %>% 
-      rbind(results2)
+      filter(query == reference_query) %>% 
+      rbind(results2) %>%
+      
+      # Classify queries as reference and comparison
+      mutate(query_type = case_when(query == reference_query ~ 'reference', 
+                                    .default = 'comparison'))
     
     # Sort queries by their average percentage rank throughout search_period
+    
+    query_order = 
+      results %>% arrange(-average_comparison_percentage) %>% 
+      pull(query) %>% unique()
+    
+    results$query = factor(results$query, levels = query_order)
+    
+    
+    query_order = 
+      results %>% arrange(-average_comparison_percentage) %>% 
+      pull(abridged_query) %>% unique()
+    
+    results$abridged_query = 
+      factor(results$abridged_query, levels = query_order)
+    
     
     query_order = 
       results %>% arrange(-average_comparison_percentage) %>% 
@@ -189,6 +206,15 @@ scopus_comparison =
     
     results$query_total_publications = 
       factor(results$query_total_publications, levels = query_order)
+    
+    
+    query_order = 
+      results %>% arrange(-average_comparison_percentage) %>% 
+      pull(abridged_query_total_publications) %>% unique()
+    
+    results$abridged_query_total_publications = 
+      factor(results$abridged_query_total_publications, levels = query_order)
+    
     
     return(results)
   }
