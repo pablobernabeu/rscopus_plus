@@ -7,9 +7,9 @@ These functions provide a modest extension of the [rscopus package in R](https:/
 
 - `scopus_search_plus` runs `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
 
-- `scopus_search_plus_DOIs` gets DOIs from `scopus_search_plus`, which can then be imported into a reference manager, such as Zotero, to create a list of references.
+- `scopus_search_DOIs` gets DOIs from `scopus_search_plus`, which can then be imported into a reference manager, such as Zotero, to create a list of references.
   
-- `scopus_search_plus_additional_DOIs` searches for additional DOIs.
+- `scopus_search_additional_DOIs` searches for additional DOIs.
 
 - `scopus_comparison` compares counts of publications on various topics during a certain period.
 
