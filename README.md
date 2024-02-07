@@ -1,9 +1,9 @@
 
 # rscopus_plus
 
-## Facilitating the use of the rscopus package in R
+## A little extension of the rscopus package
 
-These functions provide a modest extension of the [rscopus package in R](https://github.com/muschellij2/rscopus) to administer the search quota and to make specific searches and comparisons.
+These functions provide a modest extension of the R package [rscopus](https://github.com/muschellij2/rscopus) to administer the search quota and to make specific searches and comparisons.
 
 - `scopus_search_plus` runs `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
 
