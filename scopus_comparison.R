@@ -33,16 +33,18 @@ scopus_comparison =
     
     # Process search_period input, throwing error if it's invalid
     
-    if(str_detect(search_period, pattern = '^[:number:]*.[:number:]*$')) {
-      
-      search_period = 
-        str_replace_all( search_period, 
-                         pattern = '\\D+', 
-                         replacement = ':' )
-      
-      # else, if search_period is not an integer vector, throw error
-    } else if(!is.integer(search_period)) {
-      stop('Error in the format of the `search_period` argument.')
+    if(!is.integer(search_period)) {
+      if(str_detect(search_period, pattern = '^[:number:]*.[:number:]*$')) {
+        
+        search_period = 
+          as.numeric(eval(parse(
+            text = str_replace_all( search_period, 
+                                    pattern = '\\D+', 
+                                    replacement = ':' )
+          )))
+        
+      } else stop('`search_period` must contain either a numeric vector or\n',
+                  '       two years separated by one character.')
     }
     
     # Compose comparison queries by preceding each comparison term with the 
