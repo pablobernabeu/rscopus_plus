@@ -31,10 +31,25 @@ scopus_comparison =
       reference_query = paste0(reference_query_field_tag, '(', reference_query, ')')
     }
     
-    # Compose comparison queries by preceding each comparison term by the 
-    # reference query. In this way, the `comparison_terms` input (e.g., 
-    # "'effect size'") is not searched for alone, but it is always preceded 
-    # by the reference query (e.g., "'language learning' 'effect size'").
+    # Process search_period input, throwing error if it's invalid
+    
+    if(str_detect(search_period, pattern = '^[:number:]*.[:number:]*$')) {
+      
+      search_period = 
+        str_replace_all( search_period, 
+                         pattern = '\\D+', 
+                         replacement = ':' )
+      
+      # else, if search_period is not an integer vector, throw error
+    } else if(!is.integer(search_period)) {
+      stop('Error in the format of the `search_period` argument.')
+    }
+    
+    # Compose comparison queries by preceding each comparison term with the 
+    # reference query (e.g., "'language learning'). In this way, the 
+    # `comparison_terms` input (e.g., "'effect size'") is not searched for 
+    # alone, but it is always preceded by the reference query 
+    # (e.g., "'language learning' 'effect size'").
     
     queries = reference_query
     
@@ -57,18 +72,13 @@ scopus_comparison =
         
         year = search_period[i_year]
         
-        # Current year must be transformed to search_period up to the 
-        # following year to allow `search_scopus` function to work.
-        
-        i_search_period = paste(year, year+1, sep = '-')
-        
         # Use tryCatch() to handle errors in scopus_search. Errors arise when 
         # there are no publications, in which case a zero is registered. 
         
         publications = tryCatch({
           
           res = scopus_search(query = query, max_count = quota, count = quota, 
-                              date = i_search_period, verbose = verbose)
+                              date = year, verbose = verbose)
           
           res$total_results # output
           
