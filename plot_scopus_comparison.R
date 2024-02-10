@@ -75,9 +75,11 @@ plot_scopus_comparison =
             axis.text.x = element_text(margin = margin(0, 0, 2, 0)), 
             axis.text.y = element_text(margin = margin(0, 0, 0, 2)),
             legend.text = element_text(margin = margin(4, 0, 4, -5)),
-            legend.margin = margin(-2, 19, 6, 3), legend.box.margin = margin(5, 1, 0, 1),
+            legend.margin = margin(-2, 19, 6, 3), 
+            legend.box.margin = margin(5, 1, 0, 1),
             legend.title = element_blank(), legend.direction = 'vertical', 
             legend.key.width = unit(40, 'pt'), legend.position = 'bottom',
             legend.background = element_rect(color = 'grey90', fill = 'grey98'), 
-            panel.grid.minor = element_blank(), plot.margin = unit(c(8, 0, 8, 8), 'pt'))
+            panel.grid.minor = element_blank(), 
+            plot.margin = unit(c(8, 0, 8, 8), 'pt'))
   }
