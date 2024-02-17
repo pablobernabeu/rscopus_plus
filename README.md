@@ -15,6 +15,8 @@ These functions provide a modest extension of the R package [rscopus](https://gi
 
 - `plot_scopus_comparison` draws a line plot with the output from `scopus_comparison`.
 
+    ![plot_L2_L3_EF](https://raw.githubusercontent.com/pablobernabeu/L2_L3_EF/main/plot_L2_L3_EF.svg)
+
 ---
 
 *Note.* Before using any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). An error appears if the key has not been read in.
