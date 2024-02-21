@@ -25,6 +25,6 @@ The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (B
 
 ### Reference
 
-Bernabeu, P. (2024). *rscopus_plus (v1.1.3)*. Zenodo. https://doi.org/10.5281/zenodo.10674043
+Bernabeu, P. (2024). *rscopus_plus (v1.1.3)*. Zenodo. https://doi.org/10.5281/zenodo.10689727
 
 Muschelli, J. (2022). *Package ’rscopus’*. CRAN. https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
