@@ -3,7 +3,7 @@
 
 ## An extension of the `rscopus` package
 
-The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (Bernabeu, 2024) extend the R package [`rscopus`](https://github.com/muschellij2/rscopus) (Muschelli, 2022) to administer the search quota and to make specific searches and comparisons. An example of use is [available here](https://github.com/pablobernabeu/L2_L3_EF).
+The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (Bernabeu, 2024) extend the R package [`rscopus`](https://github.com/muschellij2/rscopus) (Muschelli, 2022) to administer the search quota and to enable specific searches and comparisons. An example of use is [available here](https://github.com/pablobernabeu/L2_L3_EF).
 
 - `scopus_search_plus` runs `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
 
