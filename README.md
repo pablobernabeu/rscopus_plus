@@ -23,7 +23,7 @@ The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (B
 
 ---
 
-### Reference
+### References
 
 Bernabeu, P. (2024). *rscopus_plus (v1.1.5)*. Zenodo. https://doi.org/10.5281/zenodo.10689747
 
