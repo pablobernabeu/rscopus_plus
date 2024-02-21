@@ -19,7 +19,7 @@ The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (B
 
 ---
 
-*Note.* Before using any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). An error appears if the key has not been read in.
+*Note.* Before using any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). 
 
 ---
 
