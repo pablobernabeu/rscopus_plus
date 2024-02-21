@@ -3,7 +3,7 @@
 
 ## A little extension of the `rscopus` package
 
-These functions provide a modest extension of the R package [`rscopus`](https://github.com/muschellij2/rscopus) to administer the search quota and to make specific searches and comparisons. An example of use is [available here](https://github.com/pablobernabeu/L2_L3_EF).
+These functions provide a modest extension of the R package [`rscopus`](https://github.com/muschellij2/rscopus) (Muschelli, 2022) to administer the search quota and to make specific searches and comparisons. An example of use is [available here](https://github.com/pablobernabeu/L2_L3_EF).
 
 - `scopus_search_plus` runs `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
 
@@ -20,3 +20,9 @@ These functions provide a modest extension of the R package [`rscopus`](https://
 ---
 
 *Note.* Before using any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). An error appears if the key has not been read in.
+
+---
+
+### Reference
+
+Muschelli, J. (2022). *Package ’rscopus’*. CRAN. https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
