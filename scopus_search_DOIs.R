@@ -5,7 +5,7 @@ scopus_search_DOIs =
   
   function( query, 
             search_period, 
-            quota = 5,                        # Scopus API quota 
+            quota = 5,                    # Scopus API quota 
             path,                         # directory path
             save_date_time_file = TRUE,   # save date and time in a text file
             verbose = TRUE,               # print progress in R console
