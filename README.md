@@ -1,5 +1,5 @@
 
-# `rscopus_plus` 
+# :mag_right: `rscopus_plus` 
 
 ## An extension of the `rscopus` package
 
