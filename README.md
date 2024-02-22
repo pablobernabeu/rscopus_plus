@@ -1,5 +1,5 @@
 
-# `rscopus_plus`
+# `rscopus_plus` 
 
 ## An extension of the `rscopus` package
 
