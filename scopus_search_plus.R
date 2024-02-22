@@ -1,5 +1,5 @@
 
-# Run `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota.
+# Run `rscopus::scopus_search` as many times as necessary based on the number of results and the search quota. 
 
 # Note. Before running the current function, the user must read in their Scopus API key confidentially 
 # (see https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html). An error appears if the key 
