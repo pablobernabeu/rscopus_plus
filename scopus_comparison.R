@@ -1,5 +1,5 @@
 
-# Compare counts of publications on various topics during a certain period.
+# Compare counts of publications on various topics during a certain period. 
 
 scopus_comparison = 
   
