@@ -9,7 +9,7 @@ scopus_search_plus =
   
   function( query, 
             search_period,                     # single year or period (e.g., '2000-2010')
-            quota,                             # Scopus API quota
+            quota = 5,                             # Scopus API quota
             view = c('STANDARD', 'COMPLETE'),  # see https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
             inst_token = NULL,                 # see https://cran.r-project.org/web/packages/rscopus/rscopus.pdf
             verbose = TRUE                     # print progress in R console
