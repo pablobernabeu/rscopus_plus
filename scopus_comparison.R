@@ -6,7 +6,7 @@ scopus_comparison =
   function( reference_query, 
             comparison_terms, 
             search_period, 
-            quota, 
+            quota = 5, 
             reference_query_field_tag = NULL,
             verbose = TRUE ) {
     
