@@ -1,5 +1,5 @@
 
-# Get DOIs from scopus_search_plus and save them in a CSV file.
+# Get DOIs from scopus_search_plus and save them in a CSV file. 
 
 scopus_search_DOIs = 
   
