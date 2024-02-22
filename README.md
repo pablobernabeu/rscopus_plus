@@ -11,7 +11,7 @@ The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (B
   
 - `scopus_search_additional_DOIs` searches for additional DOIs.
 
-- `scopus_comparison` compares counts of publications on various topics during a certain period.
+- `scopus_comparison` compares counts of publications on various topics throughout a certain period. The comparison terms are shown in the legend and in the lines, and they all include the reference query.
 
 - `plot_scopus_comparison` draws a line plot with the output from `scopus_comparison`.
 
@@ -19,7 +19,7 @@ The [`rscopus_plus`](https://github.com/pablobernabeu/rscopus_plus) functions (B
 
 ---
 
-*Note.* Before using any of these functions, the user must read in their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). 
+*Note.* Before using any of the first four functions, the user must set their Scopus API key confidentially (see [rscopus guidelines](https://cran.r-project.org/web/packages/rscopus/vignettes/api_key.html)). 
 
 ---
 
