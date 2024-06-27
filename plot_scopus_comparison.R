@@ -74,7 +74,7 @@ plot_scopus_comparison =
             axis.title.y = element_text(margin = margin(0, 6, 0, 0, 'pt')), 
             axis.text.x = element_text(margin = margin(0, 0, 2, 0)), 
             axis.text.y = element_text(margin = margin(0, 0, 0, 2)),
-            legend.text = element_text(margin = margin(4, 0, 4, -5)),
+            legend.text = element_text(margin = margin(4, 0, 4, 0)),
             legend.margin = margin(-2, 19, 6, 3), 
             legend.box.margin = margin(5, 1, 0, 1),
             legend.title = element_blank(), legend.direction = 'vertical', 
