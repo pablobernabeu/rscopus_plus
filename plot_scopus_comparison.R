@@ -8,10 +8,10 @@ plot_scopus_comparison =
             pub_count_in_lines = FALSE   # include publication counts in the lines
   ) {
     
-    library(stringr)
-    library(ggplot2)
-    library(geomtextpath)
-    library(ggtext)
+    require(stringr)
+    require(ggplot2)
+    require(geomtextpath)
+    require(ggtext)
     
     # Colour reference query in dark blue
     
