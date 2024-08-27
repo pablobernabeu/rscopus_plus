@@ -80,7 +80,7 @@ plot_scopus_comparison =
             legend.margin = margin(-2, 19, 6, 3), 
             legend.box.margin = margin(5, 1, 0, 1),
             legend.title = element_blank(), legend.direction = 'vertical', 
-            legend.key.width = unit(40, 'pt'), legend.position = 'bottom',
+            legend.key.width = unit(25, 'pt'), legend.position = 'bottom',
             legend.background = element_rect(color = 'grey90', fill = 'grey98'), 
             panel.grid.minor = element_blank(), 
             plot.margin = unit(c(8, 0, 8, 8), 'pt'))
