@@ -53,7 +53,9 @@ plot_scopus_comparison =
       scale_x_continuous(breaks = scales::breaks_pretty(10), expand = expansion(0.01)) +
       scale_y_continuous(expand = expansion(0.02), n.breaks = 8,
                          labels = scales::label_percent(accuracy = 1, scale = 1)) +
-      geom_line(linewidth = 2, alpha = 0.12) + 
+      geom_line(linewidth = 2, alpha = 0.12, 
+                # https://github.com/tidyverse/ggplot2/issues/5728#issuecomment-1970036164
+                show.legend = c(colour = TRUE)) + 
       guides(colour = guide_legend(override.aes = list(alpha = 1))) +
       geom_textpath(aes(label = get(label_variable), 
                         color = get(colour_variable)), 
